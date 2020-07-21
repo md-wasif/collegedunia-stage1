@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import CollegeList from './colleges/CollegeList';
+import CollegeData from '../src/data/data.json';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    CollegeList: [],
+    offset: 0,
+    datalength: "",
+    perpage: 10
+  };
+
+  componentDidMount() {
+    this.setState(() => ({ datalength: CollegeData["colleges"].length }));
+    this.fetchdata();
+  }
+   fetchdata = () => {
+      const data = CollegeData["colleges"]
+      .slice(this.state.offset, this.state.offset + this.state.perpage)
+      .map((college) => {
+           return college;
+      });
+      this.setState(() => ({
+        CollegeList: this.state.CollegeList.concat(data),
+        offset: this.state.offset + this.state.perpage,
+      }));
+   };
+
+   render() {
+     return (
+              <div className="App">
+             <CollegeList CollegeList = { this.state.CollegeList } />
+           </div>              
+     );
+   }
 }
 
 export default App;

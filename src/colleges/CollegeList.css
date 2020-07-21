@@ -1,0 +1,22 @@
+.colleges {
+    height: auto;
+    margin: 1%;
+    padding: 1%;
+    background-color:  white;
+}
+
+.heading {
+    size: 18.5px;
+    width: 180px;
+    height: 15px;
+    align-content: left;
+    line-height: 18px;
+    color: #444444;
+  }
+
+.college__list {
+    display: flex;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
